@@ -9,6 +9,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
+            ScrollView{
             ZStack {
                 LinearGradient(colors: [Color("barbie"), Color("tan"),Color("ocean"),Color("purp")], startPoint:.top , endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
@@ -54,7 +55,7 @@ struct CalendarView: View {
         let calendar = Calendar.current
         let startComponents = DateComponents(year: 2023, month: 7, day: 1)
         let endComponents = DateComponents(year: 2023, month: 12, day: 31, hour: 23, minute: 59, second: 59)
-        return calendar.date(from:startComponents)!
+        return calendar.date(from:startComponents)
             
             calendar.date(from:endComponents)!
     }()
