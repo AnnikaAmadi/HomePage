@@ -24,7 +24,7 @@ struct ContentView: View {
                                 .fontWeight(.heavy)
                                 .foregroundColor(Color(red: 0.97, green: 0.66, blue: 0.69))
                                 .padding(.top, 20)
-                                .background(.pink)
+                                .background(.white)
                                 .cornerRadius(50)
                         } // Calendar{
                             RoundedRectangle(cornerRadius: 50)
@@ -34,9 +34,6 @@ struct ContentView: View {
                             .padding(.top, 30)
                         CalendarView()
                             .padding(.top, 30)
-                        // To-Do List
-                        ToDoListView()
-                            .padding(.top, 30)
                         Spacer()
                     }
                 }
@@ -44,39 +41,52 @@ struct ContentView: View {
             }
         }
     }
-    struct CalendarView: View {
-                             
-        
-        let dateRange: ClosedRange<Date> = {
-            let calendar = Calendar.current
-            let startComponents = DateComponents(year: 2023, month: 1, day: 1)
-            let endComponents = DateComponents(year: 2023, month: 12, day: 31, hour: 23, minute: 59, second: 59)
-            return calendar.date(from:startComponents)! ...
-                calendar.date(from:endComponents)!
-               
-        }()
-        @State private var date = Date()
-        var body: some View {
-            // Implement your calendar view here
-            // This can be a custom view or a third-party library
-            Text("Calendar")
-                .font(.title)
-                .fontWeight(.heavy)
-                .foregroundColor(Color(red: 0.97, green: 0.66, blue: 0.69))
-                .padding(.top, 20)
-                        DatePicker(
-                "Start Date",
-                selection: $date,
-                in: dateRange,
-                displayedComponents: [.date, .hourAndMinute]
-               
-            )
-        }
+struct CalendarView: View {
     
+    
+    let dateRange: ClosedRange<Date> = {
+        let calendar = Calendar.current
+        let startComponents = DateComponents(year: 2023, month: 1, day: 1)
+        let endComponents = DateComponents(year: 2023, month: 12, day: 31, hour: 23, minute: 59, second: 59)
+        return calendar.date(from:startComponents)! ...
+        calendar.date(from:endComponents)!
         
+    }()
+    @State private var date = Date()
+    var body: some View {
+        // Implement your calendar view here
+        // This can be a custom view or a third-party library
+        Text("Calendar")
+        RoundedRectangle(cornerRadius: 50)
+        
+            .foregroundColor(.white)
+        
+            .frame(height: 200)
+        
+            .padding(.horizontal)
+            .font(.title)
+            .fontWeight(.heavy)
+            .foregroundColor(Color(red: 0.97, green: 0.66, blue: 0.69))
+            .padding(.top, 20)
+        DatePicker(
+            "Start Date",
+            selection: $date,
+            in: dateRange,
+            displayedComponents: [.date, .hourAndMinute]
+            
+        )
+    }
+    // Nesting an HStack within a VStack
+    func HStack() {
+        // Pomodoro timer
+        RoundedRectangle(cornerRadius: 50)
+            .foregroundColor(.white)
+            .frame(width: 150, height: 150)
+           
+      
         
     }
-        
+    
     struct ToDoListView: View {
         var body: some View {
             // Implement your to-do list view here
@@ -89,7 +99,7 @@ struct ContentView: View {
         }; struct TaskItemView: View {
             var taskTitle: String
             var body: some View {
-                HStack {
+                SwiftUI.HStack {
                     Image(systemName: "circle")
                         .resizable()
                         .frame(width: 20, height: 20)
@@ -109,10 +119,10 @@ struct ContentView: View {
                 .padding(.vertical, 4)
             }
         }
-
         
         
-    
+        
+        
         
         struct HomeView_Previews: PreviewProvider {
             static var previews: some View {
@@ -129,4 +139,5 @@ struct ContentView: View {
         
         
     }
+    
 }
